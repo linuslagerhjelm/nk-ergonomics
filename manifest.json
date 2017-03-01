@@ -7,7 +7,7 @@
 
   "browser_action": {
     "default_icon": "resources/img/clock-icon-png-10763.png",
-    "default_popup": "view/popup.html"
+    "default_popup": "popup/popup.html"
   },
   "background": {
     "scripts": ["background/background.js"],
