@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "NK Ergonomics",
+  "description": "This is an extension that unobtrusively reminds you to take breaks",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "resources/img/clock-icon-png-10763.png",
+    "default_popup": "view/popup.html"
+  },
+  "background": {
+    "scripts": ["background/background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
