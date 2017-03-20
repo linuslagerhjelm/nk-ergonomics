@@ -14,11 +14,11 @@ public class User {
     private final String mLastName;
     private final Office mOffice;
 
-    public User(int mId, String mFirstName, String mLastName, Office mOffice) {
-        this.mId = mId;
-        this.mFirstName = mFirstName;
-        this.mLastName = mLastName;
-        this.mOffice = mOffice;
+    public User(int id, String firstName, String lastName, Office office) {
+        this.mId = id;
+        this.mFirstName = firstName;
+        this.mLastName = lastName;
+        this.mOffice = office;
     }
 
     int getId() {
@@ -36,6 +36,17 @@ public class User {
 
     Office getOffice() {
         return mOffice;
+    }
+
+    /**
+     * Returns a copy of the current user object with the data provided
+     * @param firstName the new First Name
+     * @param lastName the new Last Name
+     * @param office the new Office
+     * @return a copy of the user object with the new values
+     */
+    User getModifiedCopy(String firstName, String lastName, Office office) {
+        return new User(this.mId, firstName, lastName, office);
     }
 
     @Override

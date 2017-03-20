@@ -29,10 +29,42 @@ class DatabaseTest {
     }
 
     @Test
-    public void shouldReadSingleUser() {
-        User u1 = db.getUserByFullName("Linus", "Lagerhjelm");
+    public void shouldReadSingleUser() throws Exception {
+        User u1 = db.getUsersByFullName("Linus", "Lagerhjelm").get(0);
         User u2 = new User(u1.getId(), "Linus", "Lagerhjelm", User.Office.STOCKHOLM);
         assertEquals(u2, u1);
+    }
+
+    @Test
+    public void shouldThrowException() {
+        try {
+            db.getUsersByFullName("foo", "baar");
+            fail("Expected NoSuchUserException");
+
+        } catch (NoSuchUserException e) {
+            // Test successful
+        }
+    }
+
+    @Test
+    public void shouldUpdateUser() throws Exception {
+        User u1 = db.getUsersByFullName("Linus", "Lagerhjelm").get(0);
+        User u2 = new User(u1.getId(), "Alexander", "Lagerhjelm", User.Office.STOCKHOLM);
+        db.updateUser(u2);
+        assertNotEquals(0, db.getUsersByFullName("Alexander", "Lagerhjelm"));
+    }
+
+    @Test
+    public void shouldHandleUpdateOfNonExistingUser() {
+        db.updateUser(user);
+    }
+
+    @Test
+    public void shouldDeleteUser() throws Exception {
+        List<User> originalUsers = db.getUsersByFullName("Linus", "Lagerhjelm");
+        User u1 = originalUsers.get(0);
+        db.deleteUser(u1);
+        assertNotEquals(originalUsers.size(), db.getUsersByFullName("Linus", "Lagerhjelm").size());
     }
 
     @Test

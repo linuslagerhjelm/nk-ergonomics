@@ -57,7 +57,7 @@ class Database {
      * @param lastName last name of the user
      * @return the matched user
      */
-    User getUserByFullName(String firstName, String lastName) {
+    List<User> getUsersByFullName(String firstName, String lastName) throws NoSuchUserException {
         final String query = "SELECT * FROM users u WHERE u.first_name = ? AND u.last_name = ?;";
         List<User> users = executeSelect(connection -> {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -66,7 +66,10 @@ class Database {
             return statement;
         });
 
-        return users.get(0);
+        if (users.size() == 0) {
+            throw new NoSuchUserException();
+        }
+        return users;
     }
 
     /**
@@ -79,6 +82,42 @@ class Database {
         return executeSelect(connection -> {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, office.name());
+            return stmt;
+        });
+    }
+
+    /**
+     * Updates a user in the database to reflect the changes present in
+     * the provided user object. The id field in the object will be used
+     * to identify the correct row in db and therefore should the provided
+     * object contain the same id as the user that should be updated.
+     * @param user the new values for the user
+     */
+    void updateUser(User user) {
+        final String query = "" +
+                "UPDATE users " +
+                "SET first_name = ?, last_name = ?, office = ?" +
+                "WHERE users.id = ?";
+        executeUpdate(connection -> {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, user.getFirstName());
+            stmt.setString(2, user.getLastName());
+            stmt.setString(3, user.getOffice().name());
+            stmt.setInt(4, user.getId());
+            return stmt;
+        });
+    }
+
+    /**
+     * Deletes the provided user from the Database. Identification is used
+     * by using the id field in the provided user object.
+     * @param user the user to delete
+     */
+    void deleteUser(User user) {
+        final String query = "DELETE FROM users WHERE id = ?";
+        executeUpdate(connection -> {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, user.getId());
             return stmt;
         });
     }
