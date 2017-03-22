@@ -6,7 +6,9 @@ import java.util.List;
  * Author: Linus Lagerhjelm
  * File: Database
  * Created: 2017-03-11
- * Description: Provides an API for saving and reading data from a database
+ * Description: Provides an API for saving and reading data from a database.
+ * Uses the singleton pattern in order to don't have multiple DB connections
+ * laying around.
  */
 class Database {
     interface PrepareCallback {
@@ -14,9 +16,24 @@ class Database {
     }
 
     private final String mDB_NAME;
+    private static Database mInstance;
 
-    Database(String filename) {
+    private Database(String filename) {
         mDB_NAME = "jdbc:sqlite:" + filename;
+    }
+
+    public static synchronized Database getInstance() {
+        if (mInstance == null) {
+            mInstance = new Database("nk-ergonomics.db");
+        }
+        return mInstance;
+    }
+
+    public static synchronized Database getInstance(String filename) {
+        if (mInstance == null) {
+            mInstance = new Database(filename);
+        }
+        return mInstance;
     }
 
     /**

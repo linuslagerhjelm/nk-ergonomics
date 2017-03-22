@@ -19,7 +19,7 @@ class DatabaseTest {
 
     @BeforeAll
     public static void setUp() throws Exception {
-        db = new Database(DB_NAME);
+        db = Database.getInstance(DB_NAME);
         db.initialize();
     }
 
