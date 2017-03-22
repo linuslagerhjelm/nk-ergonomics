@@ -7,8 +7,7 @@ The server supports the following operations:
 
 | action          | parameters                                                   | description                                                                                                                                     |
 |-----------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| /api/getUsers   | office: SKELLEFTEÅ, STOCKHOLM LA  
-                    name: FirstName LastName | Gets all the users that match any of the specified parameters. Meaning that additional parameters will likely increase number of returned users |
+| /api/getUsers   | **office:** SKELLEFTEÅ, STOCKHOLM LA -- **name:** FirstName LastName | Gets all the users that match any of the specified parameters. Meaning that additional parameters will likely increase number of returned users |
 | /api/createUser | <user-object>                                                | Creates a new user using the specified data. Example of a valid user can be found below                                                         |
 | /api/postScores | <list of score-objects>                                      | Adds high scores to the server. Example of valid data can be found below                                                                        |
 
