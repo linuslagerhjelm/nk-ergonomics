@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +16,13 @@ class DatabaseTest {
 
     private static final String DB_NAME = "testdb.db";
     private static Database db;
-    private final User user = new User(1337, "Linus", "Lagerhjelm", User.Office.STOCKHOLM);
+    private static final User user = new User(1337, "Linus", "Lagerhjelm", User.Office.STOCKHOLM);
 
     @BeforeAll
     public static void setUp() throws Exception {
         db = Database.getInstance(DB_NAME);
         db.initialize();
+        db.insertUser(user);
     }
 
     @Test
@@ -31,7 +33,7 @@ class DatabaseTest {
     @Test
     public void shouldReadSingleUser() throws Exception {
         User u1 = db.getUsersByFullName("Linus", "Lagerhjelm").get(0);
-        User u2 = new User(u1.getId(), "Linus", "Lagerhjelm", User.Office.STOCKHOLM);
+        User u2 = u1.getModifiedCopy("Linus", "Lagerhjelm", User.Office.STOCKHOLM);
         assertEquals(u2, u1);
     }
 
@@ -49,7 +51,7 @@ class DatabaseTest {
     @Test
     public void shouldUpdateUser() throws Exception {
         User u1 = db.getUsersByFullName("Linus", "Lagerhjelm").get(0);
-        User u2 = new User(u1.getId(), "Alexander", "Lagerhjelm", User.Office.STOCKHOLM);
+        User u2 = u1.getModifiedCopy("Alexander", "Lagerhjelm", User.Office.STOCKHOLM);
         db.updateUser(u2);
         assertNotEquals(0, db.getUsersByFullName("Alexander", "Lagerhjelm"));
     }
@@ -61,6 +63,7 @@ class DatabaseTest {
 
     @Test
     public void shouldDeleteUser() throws Exception {
+        db.insertUser(user);
         List<User> originalUsers = db.getUsersByFullName("Linus", "Lagerhjelm");
         User u1 = originalUsers.get(0);
         db.deleteUser(u1);
@@ -71,5 +74,11 @@ class DatabaseTest {
     public void shouldReadUsersByOffice() {
         List<User> users = db.getUsersByOffice(User.Office.STOCKHOLM);
         assertNotEquals(0, users.size());
+    }
+
+    @Test
+    public void shouldInsertHighScore() {
+        Score score = new Score(10, System.currentTimeMillis(), user);
+        db.insertScores(new Score[]{score});
     }
 }

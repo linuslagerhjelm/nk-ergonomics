@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,16 +23,30 @@ class Database {
         mDB_NAME = "jdbc:sqlite:" + filename;
     }
 
-    public static synchronized Database getInstance() {
+    /**
+     * Returns the active instance of the Database class or creates
+     * a new one if there were no active instances. Uses default database
+     * @return the active database instance
+     */
+    static synchronized Database getInstance() {
         if (mInstance == null) {
             mInstance = new Database("nk-ergonomics.db");
+            mInstance.initialize();
         }
         return mInstance;
     }
 
-    public static synchronized Database getInstance(String filename) {
+    /**
+     * Returns the active instance of the Database object.
+     * This method is a convenience method that allows for moc-db:s to be
+     * used while testing. Use {@link #getInstance()} to use the default.
+     * @param filename the active database instance
+     * @return active instance of the Database
+     */
+    static synchronized Database getInstance(String filename) {
         if (mInstance == null) {
             mInstance = new Database(filename);
+            mInstance.initialize();
         }
         return mInstance;
     }
@@ -41,7 +56,7 @@ class Database {
      * Creates all the missing tables.
      */
     void initialize() {
-        final String query = "CREATE TABLE IF NOT EXISTS users (" +
+        final String query1 = "CREATE TABLE IF NOT EXISTS users (" +
                 "    id        INTEGER PRIMARY KEY AUTOINCREMENT" +
                 "                       NOT NULL," +
                 "    first_name TEXT    NOT NULL," +
@@ -50,7 +65,15 @@ class Database {
                 "                       NOT NULL" +
                 ");";
 
-        executeUpdate((connection -> connection.prepareStatement(query) ));
+        final String query2 = " CREATE TABLE IF NOT EXISTS scores (" +
+                "    id         INTEGER PRIMARY KEY NOT NULL," +
+                "    value      INTEGER NOT NULL," +
+                "    timestamp  INTEGER NOT NULL," +
+                "    user_id    INTEGER" +
+                ");";
+
+        executeUpdate((connection -> connection.prepareStatement(query1) ));
+        executeUpdate((connection -> connection.prepareStatement(query2) ));
     }
 
     /**
@@ -140,8 +163,28 @@ class Database {
     }
 
     /**
+     * Adds the provided scores to the database
+     * @param scores list of scores to add
+     */
+    void insertScores(Score[] scores) {
+        final String query = "INSERT INTO scores (value, timestamp, user_id) VALUES (?,?,?)";
+        executeBatchUpdate(connection -> {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            Arrays.stream(scores).forEach(score -> {
+                try {
+                    stmt.setInt(1, score.getValue());
+                    stmt.setLong(2, score.getTimestamp());
+                    stmt.setInt(3, score.getUser().getId());
+                    stmt.addBatch();
+                } catch (SQLException e) {}
+            });
+            return stmt;
+        });
+    }
+
+    /**
      * Handles the necessary operations to execute a prepared update
-     * @param callback callback that prepares and executes a query
+     * @param callback callback that prepares a query
      */
     private void executeUpdate(PrepareCallback callback) {
         Connection connection = null;
@@ -169,8 +212,37 @@ class Database {
     }
 
     /**
+     * Executes a batch update
+     * @param callback callback that prepares a query
+     */
+    private void executeBatchUpdate(PrepareCallback callback) {
+        Connection connection = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection(mDB_NAME);
+            PreparedStatement statement = callback.prepare(connection);
+            statement.setQueryTimeout(10);  // NOTE: Value is given in seconds
+            statement.executeBatch();
+            statement.close();
+
+        } catch(SQLException | ClassNotFoundException e) {
+            // We do not want to propagate errors outside this class
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(connection != null)
+                    connection.close();
+
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * Handles the necessary operations to execute a select query on the db
-     * @param callback callback that prepares and executes a query
+     * @param callback callback that prepares a query
      * @return ResultSet containing the result of the query. Can be null if
      * if an exception were thrown or if there were no result set from db.
      */
