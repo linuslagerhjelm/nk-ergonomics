@@ -4,11 +4,13 @@ This is a tool to be used at offices that will help the employers by reducing th
 The tool consists of a chrome extension that communicates with a server that holds user info and scores.
 
 ## Starting the server:      
-The server requires SQLite to run and Maven to build. SQLite is pre installed on Mac. Other systems need to download and install separately.  
+The server requires SQLite to run and Maven to build. SQLite is pre installed on Mac. Other systems may need to download and install separately.  
 If not done so already, install maven 3. On a Mac, this can be done using homebrew:
 ```
 brew install maven
 ```
+On windows:  [installing maven](https://maven.apache.org/guides/getting-started/windows-prerequisites.html), [installing SQLite](http://johnatten.com/2014/12/07/installing-and-using-sqlite-on-windows/)
+  
 Build the project:
 ```
 mvn package
