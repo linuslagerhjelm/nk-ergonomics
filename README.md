@@ -23,25 +23,25 @@ User example:
 High Score example:
 ```json
 [
-	{
-		"value": 10, 
-		"timestamp": 1490208166633, 
-		"user": {
-			"id": 9,
-			"firstName": "Linus",
-			"lastName": "Lagerhjelm",
-			"office": "STOCKHOLM"
-		}
-	},
-	{
-		"value": 11, 
-		"timestamp": 1490208167633, 
-		"user": {
-			"id": 9,
-			"firstName": "Linus",
-			"lastName": "Lagerhjelm",
-			"office": "STOCKHOLM"
-		}
-	}
+    {
+	    "value": 10, 
+	    "timestamp": 1490208166633, 
+	    "user": {
+		    "id": 9,
+		    "firstName": "Linus",
+		    "lastName": "Lagerhjelm",
+		    "office": "STOCKHOLM"
+	    }
+    },
+    {
+	    "value": 11, 
+	    "timestamp": 1490208167633, 
+	    "user": {
+		    "id": 9,
+		    "firstName": "Linus",
+		    "lastName": "Lagerhjelm",
+		    "office": "STOCKHOLM"
+	    }
+    }
 ]
 ```
