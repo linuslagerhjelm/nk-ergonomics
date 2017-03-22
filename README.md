@@ -3,6 +3,23 @@ This is a tool to be used at offices that will help the employers by reducing th
 
 The tool consists of a chrome extension that communicates with a server that holds user info and scores.
 
+##Starting the server:
+The server requires SQLite to run and Maven to build. SQLite is pre installed on Mac. Other systems need to download and install separately.  
+If not done so already, install maven 3. On a Mac, this can be done using homebrew:
+```
+brew install maven
+```
+Build the project:
+```
+mvn package
+```
+The server can then be started using the command:
+```
+java -cp target/nk-ergonomics-1.0.jar Server
+```
+
+
+##Operations
 The server supports the following operations:  
 
 | action          | parameters                                                   | description                                                                                                                                     |
