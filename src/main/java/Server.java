@@ -10,9 +10,10 @@ import static spark.Spark.*;
 public class Server {
     public static void main(String[] args) {
         APIFacade api = new APIFacade();
-        get("/api/highscores", api::getAllHighScores);
         get("/api/startGame", api::startGame);
         get("/api/getUsers", api::getUsers);
+        get("/api/getHighScores", api::getHighScores);
+
         post("/api/postScores", api::postScores);
         post("/api/createUser", api::createUser);
 

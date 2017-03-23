@@ -17,12 +17,9 @@ import java.util.Map;
  */
 public class APIFacade {
 
-    Gson mParser = new Gson();
-    Database mDb = Database.getInstance();
+    private Gson mParser = new Gson();
+    private Database mDb = Database.getInstance();
 
-    Object getAllHighScores(Request req, Response res) {
-        return null;
-    }
 
     Object startGame(Request request, Response response) {
         return null;
@@ -108,5 +105,11 @@ public class APIFacade {
         }
 
         return mParser.toJson(returnUsers);
+    }
+
+    Object getHighScores(Request request, Response response) {
+        Map<String, String[]> values = request.queryMap().toMap();
+
+        return null;
     }
 }
