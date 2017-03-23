@@ -24,11 +24,11 @@ java -cp target/nk-ergonomics-1.0.jar Server
 ## Operations  
 The server supports the following operations:  
 
-| action          | parameters                                                   | description                                                                                                                                     |
-|-----------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| /api/getUsers   | <ul><li>**office:** "SKELLEFTEÅ", "STOCKHOLM", "LA" </li>   <li>**name:** "FirstName LastName"</li></ul> | Gets all the users that match any of the specified parameters. Meaning that additional parameters will likely increase number of returned users |
-| /api/createUser | user-object                                                | Creates a new user using the specified data. Example of a valid user can be found below                                                         |
-| /api/postScores | list of score-objects                                      | Adds high scores to the server. Example of valid data can be found below                                                                        |
+|method| action          | parameters                                                   | description                                                                                                                                     |
+|------|-----------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+|get   | /api/getUsers   | <ul><li>**office:** "SKELLEFTEÅ", "STOCKHOLM", "LA" </li>   <li>**name:** "FirstName LastName"</li></ul> | Gets all the users that match any of the specified parameters. Meaning that additional parameters will likely increase number of returned users |
+|post  | /api/createUser | user-object                                                | Creates a new user using the specified data. Example of a valid user can be found below                                                         |
+|post  | /api/postScores | list of score-objects                                      | Adds high scores to the server. Example of valid data can be found below                                                                        |
 
 User example:
 ```json

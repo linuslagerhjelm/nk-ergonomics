@@ -3,7 +3,7 @@
 
   "name": "NK Ergonomics",
   "description": "This is an extension that unobtrusively reminds you to take breaks",
-  "version": "1.0",
+  "version": "1.1",
 
   "browser_action": {
     "default_icon": "resources/img/clock-icon-png-10763.png",

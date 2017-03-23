@@ -8,15 +8,7 @@ import static spark.Spark.*;
  * Description: The main server class
  */
 public class Server {
-    private static void printWelcome() {
-        System.out.println("========================");
-        System.out.println("NK-ERGONOMICS");
-        System.out.println("========================");
-        System.out.println("Server listening on port: " + SPARK_DEFAULT_PORT);
-    }
-
     public static void main(String[] args) {
-        // Server.printWelcome();
         APIFacade api = new APIFacade();
         get("/api/highscores", api::getAllHighScores);
         get("/api/startGame", api::startGame);
