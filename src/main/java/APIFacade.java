@@ -72,6 +72,7 @@ public class APIFacade {
         }
 
         if (user.valid()) {
+            mDb.insertUser(user);
             response.status(200);
             return HttpHelper.getOkPage();
         }

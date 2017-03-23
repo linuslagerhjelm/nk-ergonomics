@@ -8,7 +8,7 @@ import static spark.Spark.*;
  * Description: The main server class
  */
 public class Server {
-    static void printWelcome() {
+    private static void printWelcome() {
         System.out.println("========================");
         System.out.println("NK-ERGONOMICS");
         System.out.println("========================");
@@ -16,7 +16,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        Server.printWelcome();
+        // Server.printWelcome();
         APIFacade api = new APIFacade();
         get("/api/highscores", api::getAllHighScores);
         get("/api/startGame", api::startGame);
