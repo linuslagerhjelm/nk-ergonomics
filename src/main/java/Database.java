@@ -61,7 +61,7 @@ class Database {
                 "                       NOT NULL," +
                 "    first_name TEXT    NOT NULL," +
                 "    last_name  TEXT    NOT NULL," +
-                "    office     STRING  DEFAULT SKELLEFTEÅ" +
+                "    office     STRING  DEFAULT 'SKELLEFTEÅ'" +
                 "                       NOT NULL" +
                 ");";
 
@@ -99,7 +99,7 @@ class Database {
      */
     List<User> getUsersByFullName(String firstName, String lastName) throws NoSuchUserException {
         final String query = "SELECT * FROM users u WHERE u.first_name = ? AND u.last_name = ?;";
-        List<User> users = executeSelect(connection -> {
+        List<User> users = executeSelectUsers(connection -> {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, firstName);
             statement.setString(2, lastName);
@@ -119,7 +119,7 @@ class Database {
      */
     List<User> getUsersByOffice(User.Office office) {
         final String query = "SELECT * FROM users u WHERE u.office = ?;";
-        return executeSelect(connection -> {
+        return executeSelectUsers(connection -> {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, office.name());
             return stmt;
@@ -183,6 +183,23 @@ class Database {
     }
 
     /**
+     * Uses the provided filter to get matching highscores
+     * @param filter the filter to use
+     * @return list of matched scores
+     */
+    List<Score> getScoresFromFilter(HighScoreFilter filter) {
+        String filterString = filter.getFilterString();
+        final String query =    "SELECT * " +
+                                "FROM scores s " +
+                                "INNER JOIN users u " +
+                                "ON s.user_id = u.id WHERE (SELECT u.id FROM users u WHERE " + filterString + ")";
+        return executeSelectScores(connection -> {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            return stmt;
+        });
+    }
+
+    /**
      * Handles the necessary operations to execute a prepared update
      * @param callback callback that prepares a query
      */
@@ -241,12 +258,13 @@ class Database {
     }
 
     /**
-     * Handles the necessary operations to execute a select query on the db
+     * Handles the necessary operations to execute a select query for Users
+     * on the db
      * @param callback callback that prepares a query
      * @return ResultSet containing the result of the query. Can be null if
      * if an exception were thrown or if there were no result set from db.
      */
-    private List<User> executeSelect(PrepareCallback callback) {
+    private List<User> executeSelectUsers(PrepareCallback callback) {
         List<User> users = null;
         Connection connection = null;
         try {
@@ -293,5 +311,65 @@ class Database {
         }
 
         return users;
+    }
+
+    /**
+     * Handles the necessary operations to execute a select query for Scores
+     * on the db
+     * @param callback callback that prepares a query
+     * @return ResultSet containing the result of the query. Can be null if
+     * if an exception were thrown or if there were no result set from db.
+     */
+    private List<Score> executeSelectScores(PrepareCallback callback) {
+        List<Score> scores = null;
+        Connection connection = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection(mDB_NAME);
+            PreparedStatement statement = callback.prepare(connection);
+            statement.setQueryTimeout(10);  // NOTE: Value is given in seconds
+            scores = parseScores(statement.executeQuery());
+
+        } catch(SQLException | ClassNotFoundException e) {
+            // We do not want to propagate errors outside this class
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(connection != null)
+                    connection.close();
+
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return scores;
+    }
+
+    /**
+     * Handles the parsing of Scores from a result set into a list of Scores
+     * @param resultSet the result set to extract Scores from
+     * @return list of Scores
+     */
+    private List<Score> parseScores(ResultSet resultSet) {
+        List<Score> scores = new ArrayList<>();
+        try {
+            while(resultSet.next()) {
+                int id = resultSet.getInt("user_id");
+                String first = resultSet.getString("first_name");
+                String last = resultSet.getString("last_name");
+                User.Office office = User.Office.valueOf(resultSet.getString("office"));
+                Long timeStamp = resultSet.getLong("timestamp");
+                int value = resultSet.getInt("value");
+
+                User u = new User(id, first, last, office);
+                scores.add(new Score(value, timeStamp, u));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return scores;
     }
 }

@@ -109,7 +109,19 @@ public class APIFacade {
 
     Object getHighScores(Request request, Response response) {
         Map<String, String[]> values = request.queryMap().toMap();
+        String[] startTime = values.get("startTime");
 
-        return null;
+        if (startTime == null || startTime.length != 1) {
+            response.status(400);
+            return HttpHelper.getErrorPage("startTime is required");
+        }
+
+        HighScoreFilter filter = new HighScoreFilter(Long.parseLong(startTime[0]));
+        filter.setEndTime(values.get("endTime"));
+        filter.setLimit(values.get("limit"));
+        filter.setOffice(values.get("office"));
+        filter.setName(values.get("name"));
+
+        return mParser.toJson(mDb.getScoresFromFilter(filter));
     }
 }
