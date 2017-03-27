@@ -123,12 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 var create = function(){
 
-    namn = document.getElementById("namn");
-    efternamn = document.getElementById("efternamn");
-    office = document.getElementById("office");
+    var namn = document.getElementById("namn").value;
+    var efternamn = document.getElementById("efternamn").value;
+    var office = document.getElementById("office").value;
 
 
-	http://localhost:4567/api/createUser?firstname=namn;lastname=efternamn;office=office
+	var encodedParam = encodeURIComponent('http://localhost:4567/api/createUser?firstname=namn&lastname=efternamn&office=office');
 
 
 	});
