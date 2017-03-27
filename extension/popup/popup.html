@@ -9,15 +9,53 @@
     <title>Getting Started Extension's Popup</title>
     <style>
         body {
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        color:#FFFFFF;
+        background-color: #B0C6D5;
         }
         #status {
-            /* avoid an excessively wide status text */
-            white-space: pre;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 400px;
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 250px;
+        height: 300px;
+        }
+        h1 {
+        text-align: center;
+        }
+
+        #submit {
+        background-color: #687699;
+        text-decoration: none;
+        border: none;
+        width: 80%;
+        height: 40px;
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        color: #ffffff;
+        font-size: 100%;
+        margin-left: 10%;
+        }
+
+        #submit:hover {
+        background-color: #FFFFFF;
+        color: #687699;
+        -webkit-transition: all 0.2s linear;
+        }
+
+        #text {
+        width: 75%;
+        height: 30px;
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        margin-left: 10%;
+        position: absolute;
+        top: 0;
+        margin-top: 50%;
+        }
+        .office {
+        margin-bottom: 70%;
         }
     </style>
 
@@ -30,9 +68,16 @@
     <script src="/popup/popup.js"></script>
 </head>
 <body>
-<h1> Hej hej</h1>
-<div mId="status"></div>
-<img mId="image-result" hidden>
+    <h1>NK Ergonomics</h1>
+    <div id="status"></div>
+    <select>
+        <option value="Skelleftea">Skelleftea</option>
+        <option value="Stockholm">Stockholm</option>
+        <option value="Los Angeles">Los Angeles</option>
+    </select>
+    <form>
+        <input type="text" id="text">
+        <input type="submit" value="Create" id="submit">
+    </form>
 </body>
 </html>
-
