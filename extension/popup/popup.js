@@ -121,9 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-$(document).ready(function(){
+var create = function(){
 
-	$("#submit").click(function(){
+    namn = document.getElementById("namn");
+    efternamn = document.getElementById("efternamn");
+    office = document.getElementById("office");
+
+
+	http://localhost:4567/api/createUser?firstname=namn;lastname=efternamn;office=office
 
 
 	});
