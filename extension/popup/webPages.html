@@ -3,11 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Forbidden web pages</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+            color:#FFFFFF;
+            background-color: #B0C6D5;
+        }
+        .status {
+            /* avoid an excessively wide status text */
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 250px;
+            height: 300px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #pagelink {
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            padding: 5px;
+            font-size: 11px;
+            text-decoration: none;
+            box-shadow: 0px 5px 5px 0px ;
+            margin-bottom: 20px;
+            display:center;
+            position: absolute;
+            top: 90%;
+            left: 19%;
+        }
+
+
+    </style>
 </head>
 <body>
 
     <h1>Forbidden web pages </h1>
     <div class="status"></div>
+
+    <a id="pagelink" href="highscore.html">To highscore page</a>
 
 </body>
 </html>
