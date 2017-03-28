@@ -14,7 +14,7 @@
             color:#FFFFFF;
             background-color: #B0C6D5;
         }
-        #status {
+        .status {
             /* avoid an excessively wide status text */
             white-space: pre;
             text-overflow: ellipsis;
@@ -80,7 +80,7 @@
 </head>
 <body>
     <h1>NK Ergonomics</h1>
-    <div id="status"></div>
+    <div class="status"></div>
     <select id="office">
         <option value="Skelleftea">Skelleftea</option>
         <option value="Stockholm">Stockholm</option>
@@ -89,7 +89,7 @@
     <form>
         <input type="text" id="namn"placeholder="First name">
         <input type="text" id="efternamn" placeholder="Last name">
-        <input type="submit" value="Create" id="submit" onclick="create()">
+        <input type="submit" value="Create" id="submit" onclick=""create()>
     </form>
 </body>
 </html>
