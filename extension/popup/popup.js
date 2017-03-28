@@ -58,12 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-
 function create(){
 
     var namn = document.getElementById("namn").value;
     namn += " " + document.getElementById("efternamn").value;
     var office = document.getElementById("office").value.toUpperCase();
 	var encodedParam = encodeURIComponent(`http://localhost:4567/api/createUser?name=${namn}&&office=${office}`);
+
 };
