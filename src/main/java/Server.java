@@ -1,4 +1,8 @@
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import static spark.Spark.*;
 
 /**
@@ -9,6 +13,10 @@ import static spark.Spark.*;
  */
 public class Server {
     public static void main(String[] args) {
+        BasicConfigurator.configure();
+        Logger.getLogger("org").setLevel(Level.WARN);
+        Logger.getLogger("akka").setLevel(Level.WARN);
+
         APIFacade api = new APIFacade();
         get("/api/startGame", api::startGame);
         get("/api/getUsers", api::getUsers);
