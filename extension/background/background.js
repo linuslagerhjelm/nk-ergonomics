@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 var getHighscores = function() {
-    alert("window is loaded");
+    alert("window is loaded ");
  }
 
 /*$(document).ready(function(){
