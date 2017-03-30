@@ -60,9 +60,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function create(){
 
+    var submit = document.getElementById("submit");
     var namn = document.getElementById("namn").value;
-    namn += " " + document.getElementById("efternamn").value;
+    var lastName = document.getElementById("efternamn").value;
+    // namn += " " + document.getElementById("efternamn").value;
     var office = document.getElementById("office").value.toUpperCase();
 	var encodedParam = encodeURIComponent(`http://localhost:4567/api/createUser?name=${namn}&&office=${office}`);
 
+	$("submit").submit(function() {
+	    $.post(encodedParam,
+	    {
+	        firstName: JSON.stringify(name),
+	        lastName: JSON.stringify(lastName),
+	        office: JSON.stringify(office)
+	    }, function() {
+	        alert("TJA, DET HÄR FUNKAR JU!")
+	        });
+	});
 };
