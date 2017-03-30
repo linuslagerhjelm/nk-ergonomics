@@ -65,9 +65,9 @@ function create(){
     var lastName = document.getElementById("efternamn").value;
     // namn += " " + document.getElementById("efternamn").value;
     var office = document.getElementById("office").value.toUpperCase();
-	var encodedParam = encodeURIComponent(`http://localhost:4567/api/createUser?name=${namn}&&office=${office}`);
+	var encodedParam = encodeURIComponent(`http://localhost:4567/api/createUser/*?name=${namn}&&office=${office}*/`);
 
-	$("submit").submit(function() {
+	/*$("submit").submit(function() {
 	    $.post(encodedParam,
 	    {
 	        firstName: JSON.stringify(name),
@@ -76,5 +76,18 @@ function create(){
 	    }, function() {
 	        alert("TJA, DET HÄR FUNKAR JU!")
 	        });
-	});
+	});*/
+
+    data = {
+        "firstName": JSON.stringify(name),
+        "lastName": JSON.stringify(lastName),
+        "office": JSON.stringify(office)
+    }
+
+	$.ajax({
+      type: "POST",
+      url: "/api/createUser",
+      data: data,
+      success: function (data) { console.log(data) },
+    });
 };
