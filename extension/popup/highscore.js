@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     var elem = document.getElementById("knapp2");
     if (elem) {
         elem.addEventListener("click", getHighscores);
@@ -8,11 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function getHighscores() {
     alert("window is loaded ");
- }
+ }*/
 
-/*$(document).ready(function(){
-    $(window).load(function() {
+$(document).ready(function() {
 
-     alert("window is loaded");
-    });
-)}*/
+});
