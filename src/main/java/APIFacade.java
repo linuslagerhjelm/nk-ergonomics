@@ -38,18 +38,18 @@ public class APIFacade {
 
         } catch (JsonSyntaxException e) {
             response.status(400);
-            return HttpHelper.getErrorPage("400 Invalid format");
+            return HttpHelper.getError("Invalid format", 400);
         }
 
         for (Score score : scores) {
             if (!score.valid()) {
                 response.status(400);
-                return HttpHelper.getErrorPage("400 Invalid format");
+                return HttpHelper.getError("Invalid format", 400);
             }
         }
         mDb.insertScores(scores);
         response.status(200);
-        return HttpHelper.getOkPage();
+        return HttpHelper.getOk();
     }
 
     /**
@@ -65,16 +65,17 @@ public class APIFacade {
 
         } catch (JsonSyntaxException e) {
             response.status(400);
-            return HttpHelper.getErrorPage("400 Invalid format");
+            return HttpHelper.getError("Invalid format", 400);
         }
 
         if (user.valid()) {
+            User returnUser = new User(mDb.getNextUserId(), user.getFirstName(), user.getLastName(), user.getOffice());
             mDb.insertUser(user);
             response.status(200);
-            return HttpHelper.getOkPage();
+            return mParser.toJson(returnUser);
         }
         response.status(400);
-        return HttpHelper.getErrorPage("400 Invalid user format");
+        return HttpHelper.getError("Invalid user format", 400);
     }
 
     /**
@@ -113,7 +114,7 @@ public class APIFacade {
 
         if (startTime == null || startTime.length != 1) {
             response.status(400);
-            return HttpHelper.getErrorPage("startTime is required");
+            return HttpHelper.getError("startTime is required", 400);
         }
 
         HighScoreFilter filter = new HighScoreFilter(Long.parseLong(startTime[0]));

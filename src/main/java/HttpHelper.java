@@ -4,22 +4,23 @@
  * Created: 2017-03-22
  * Description: Contains helper-functions for sending responses to client
  */
-public class HttpHelper {
+class HttpHelper {
 
     /**
      * Returns a html page that contains the provided error message
      * @param message the error message
+     * @param status the status code for the error
      * @return html page
      */
-    public static String getErrorPage(String message) {
-        return "<html><body><h1>" + message + "</h1></body></html>";
+    static String getError(String message, int status) {
+        return String.format("{\"status\": %d, \"message\":\"%s\"}", status, message);
     }
 
     /**
      * Returns an status ok page
      * @return the html page
      */
-    public static String getOkPage() {
-        return "<html><body><h1>OK</h1></body></html>";
+    static String getOk() {
+        return String.format("{\"status\": %d, \"message\":\"%s\"}", 200, "ok");
     }
 }

@@ -92,6 +92,16 @@ class Database {
     }
 
     /**
+     * Returns the id that the next user inserted in the database will get
+     * @return a user id
+     */
+    int getNextUserId() {
+        final String query = "SELECT max(id) + 1 FROM users";
+        return executeSelectNextUid(connection -> connection.prepareStatement(query));
+    }
+
+
+    /**
      * Retrieves a single user from the database using the full name
      * @param firstName first name of the user
      * @param lastName last name of the user
@@ -297,19 +307,14 @@ class Database {
      * @param resultSet the result set to extract users from
      * @return list of users
      */
-    private List<User> parseUsers(ResultSet resultSet) {
+    private List<User> parseUsers(ResultSet resultSet) throws SQLException {
         List<User> users = new ArrayList<>();
-        try {
-            while(resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String first = resultSet.getString("first_name");
-                String last = resultSet.getString("last_name");
-                User.Office office = User.Office.valueOf(resultSet.getString("office"));
-                users.add(new User(id, first, last, office));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while(resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String first = resultSet.getString("first_name");
+            String last = resultSet.getString("last_name");
+            User.Office office = User.Office.valueOf(resultSet.getString("office"));
+            users.add(new User(id, first, last, office));
         }
 
         return users;
@@ -353,25 +358,61 @@ class Database {
      * @param resultSet the result set to extract Scores from
      * @return list of Scores
      */
-    private List<Score> parseScores(ResultSet resultSet) {
+    private List<Score> parseScores(ResultSet resultSet) throws SQLException {
         List<Score> scores = new ArrayList<>();
-        try {
-            while(resultSet.next()) {
-                int id = resultSet.getInt("user_id");
-                String first = resultSet.getString("first_name");
-                String last = resultSet.getString("last_name");
-                User.Office office = User.Office.valueOf(resultSet.getString("office"));
-                Long timeStamp = resultSet.getLong("timestamp");
-                int value = resultSet.getInt("value");
+        while(resultSet.next()) {
+            int id = resultSet.getInt("user_id");
+            String first = resultSet.getString("first_name");
+            String last = resultSet.getString("last_name");
+            User.Office office = User.Office.valueOf(resultSet.getString("office"));
+            Long timeStamp = resultSet.getLong("timestamp");
+            int value = resultSet.getInt("value");
 
-                User u = new User(id, first, last, office);
-                scores.add(new Score(value, timeStamp, u));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            User u = new User(id, first, last, office);
+            scores.add(new Score(value, timeStamp, u));
         }
 
         return scores;
+    }
+
+    /**
+     * Executes a query to get the next user id
+     * @param callback the query to execute
+     * @return the next user id
+     */
+    private int executeSelectNextUid(PrepareCallback callback) {
+        int id = 1;
+        Connection connection = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection(mDB_NAME);
+            PreparedStatement statement = callback.prepare(connection);
+            statement.setQueryTimeout(10);  // NOTE: Value is given in seconds
+            id = parseId(statement.executeQuery());
+
+        } catch(SQLException | ClassNotFoundException e) {
+            // We do not want to propagate errors outside this class
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(connection != null)
+                    connection.close();
+
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return id;
+    }
+
+    /**
+     * Parses the resultset
+     * @param resultSet the ResultSet to parse
+     * @return the next user id
+     * @throws SQLException if something went wrong
+     */
+    private int parseId(ResultSet resultSet) throws SQLException {
+        return resultSet.getInt("max(id) + 1");
     }
 }
