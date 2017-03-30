@@ -191,8 +191,10 @@ class Database {
         String filterString = filter.getFilterString();
         final String query =    "SELECT * " +
                                 "FROM scores s " +
-                                "INNER JOIN users u " +
-                                "ON s.user_id = u.id WHERE (SELECT u.id FROM users u WHERE " + filterString + ")";
+                                "INNER JOIN (SELECT * FROM users u WHERE " + filterString + ") u " +
+                                "ON s.user_id = u.id " +
+                                "WHERE " + filter.getTimeFilter() + " " +
+                                "LIMIT " + filter.getLimit();
         return executeSelectScores(connection -> {
             PreparedStatement stmt = connection.prepareStatement(query);
             return stmt;
