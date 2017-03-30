@@ -38,6 +38,10 @@
             left: 12%;
         }
 
+        #knapp2{
+            margin-bottom: 60px;
+        }
+
     </style>
 
     <script type="text/javascript">
@@ -46,10 +50,31 @@
    } ;
     </script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="/background/background.js"></script>
+
 </head>
+
+<!-- 1490208167633
+ {
+    	"value": 10,
+	"timestamp": 1490208166633,
+	"user": {
+		"id": 9,
+		"firstName": "Linus",
+		"lastName": "Lagerhjelm",
+		"office": "STOCKHOLM"
+	    }
+    }
+
+ -->
+
 <body>
-    <h1>Highscore</h1>
+    <h1 id=rubrik">Highscore</h1>
     <div class="status"></div>
+
+    <button id="knapp2" type="button">Visa High Scores</button>
 
 
     <a id="pagelink" href="webPages.html">To forbidden web pages</a>
