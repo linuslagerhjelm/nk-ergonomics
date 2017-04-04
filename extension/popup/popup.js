@@ -63,22 +63,22 @@ function create(){
         alert("HEJ DU");
 
         var submit = document.getElementById("submit");
-        var name = document.getElementById("namn").value;
+        var firstName = document.getElementById("namn").value;
         var lastName = document.getElementById("efternamn").value;
         // namn += " " + document.getElementById("efternamn").value;
         var office = document.getElementById("office").value.toUpperCase();
 	    var encodedParam = encodeURIComponent(`http://localhost:4567/api/createUser/*?name=${namn}&&office=${office}*/`);
 
         data = {
-            "firstName": JSON.stringify(name),
-            "lastName": JSON.stringify(lastName),
-            "office": JSON.stringify(office)
+            "firstName": firstName,
+            "lastName": lastName,
+            "office": office
         }
-
+        var temp = JSON.stringify(data);
 	    $.ajax({
             type: "POST",
-            url: "/api/createUser",
-            data: data,
+            url: encodedParam,
+            data: JSON.stringify(data),
             success: function (data) { console.log(data) },
         });
     });
