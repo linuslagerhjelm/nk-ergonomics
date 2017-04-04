@@ -75,6 +75,8 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/resources/js/jquery.js"></script>
     <script src="/popup/popup.js"></script>
 
 </head>
@@ -86,10 +88,11 @@
         <option value="Stockholm">Stockholm</option>
         <option value="Los Angeles">Los Angeles</option>
     </select>
-    <form action="highscore.html">
-        <input type="text" id="namn"placeholder="First name"/>
-        <input type="text" id="efternamn" placeholder="Last name"/>
-        <input type="submit" value="Create" id="submit"/>
+   <!-- <button id="submit">Create</button>-->
+    <form>
+        <input type="text" id="namn" placeholder="First name" required/>
+        <input type="text" id="efternamn" placeholder="Last name" required/>
+        <input type="button" value="Create" id="submit"/>
     </form>
 </body>
 </html>
