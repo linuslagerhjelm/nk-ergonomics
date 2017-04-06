@@ -1,5 +1,7 @@
 package com.example.jenny.androidapplication;
 
+import com.example.jenny.androidapplication.Model.ServerConnection;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
