@@ -119,3 +119,5 @@ target/
 nk-ergonomics.iml
 lib/
 *.db
+*.pem
+*.crx
