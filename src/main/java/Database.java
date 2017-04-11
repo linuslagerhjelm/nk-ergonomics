@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -132,6 +133,21 @@ class Database {
         return executeSelectUsers(connection -> {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, office.name());
+            return stmt;
+        });
+    }
+
+    /**
+     * Gets a single user by its user id
+     * @param id the id of the user to get
+     * @return List containing a single user
+     * @throws NoSuchUserException If no user were found
+     */
+    List<User> getUsersById(Integer id) throws NoSuchUserException {
+        final String sql = "SELECT * FROM users u WHERE u.id = ?";
+        return executeSelectUsers(connection -> {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
             return stmt;
         });
     }

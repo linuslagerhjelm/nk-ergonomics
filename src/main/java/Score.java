@@ -1,7 +1,5 @@
 import com.google.gson.annotations.SerializedName;
 
-import java.time.LocalDateTime;
-
 /**
  * Author: Linus Lagerhjelm
  * File: Score

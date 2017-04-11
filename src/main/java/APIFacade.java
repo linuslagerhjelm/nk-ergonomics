@@ -89,6 +89,7 @@ public class APIFacade {
         List<User> returnUsers = new ArrayList<>();
         String[] officeUsers = values.get("office");
         String[] namedUsers = values.get("name");
+        String[] uId = values.get("id");
 
         if (officeUsers != null) {
             Arrays.stream(officeUsers).forEach(office -> {
@@ -102,6 +103,14 @@ public class APIFacade {
                 try {
                     returnUsers.addAll(mDb.getUsersByFullName(names[0], names[1]));
                 } catch (NoSuchUserException e) {}
+            });
+        }
+
+        if (uId != null) {
+            Arrays.stream(uId).forEach(id -> {
+                try {
+                    returnUsers.addAll(mDb.getUsersById(Integer.parseInt(id)));
+                } catch (NoSuchUserException ignore) {}
             });
         }
 
