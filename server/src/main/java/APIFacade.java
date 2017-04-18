@@ -32,6 +32,8 @@ public class APIFacade {
      * @return ok/error page
      */
     Object postScores(Request request, Response response) {
+        response.header("Access-Control-Allow-Origin", "*");
+        response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         Score[] scores;
         try {
             scores = mParser.fromJson(request.body(), Score[].class);
@@ -87,6 +89,9 @@ public class APIFacade {
      * @return json formatted string
      */
     Object getUsers(Request request, Response response) {
+        response.header("Access-Control-Allow-Origin", "*");
+        response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
         Map<String, String[]> values = request.queryMap().toMap();
         List<User> returnUsers = new ArrayList<>();
         String[] officeUsers = values.get("office");
@@ -120,6 +125,9 @@ public class APIFacade {
     }
 
     Object getHighScores(Request request, Response response) {
+        response.header("Access-Control-Allow-Origin", "*");
+        response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
         Map<String, String[]> values = request.queryMap().toMap();
         String[] startTime = values.get("startTime");
 
