@@ -15,6 +15,9 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.*;
+
 
 /**
  * Created by Jenny on 2017-04-06.
@@ -60,9 +63,11 @@ public class ServerConnection {
     }
 
     public void postScores(List<Score> highScore) throws Exception{
-        JSONArray score = new JSONArray(highScore);
-        System.out.println(score.toString());
-        byte[] postData       = score.toString().getBytes();
+
+        String score = new Gson().toJson(highScore);
+        //JSONArray score = new JSONArray(highScore);
+        //System.out.println(score.toString());
+        byte[] postData       = score.getBytes();
         URL content = new URL("http://localhost:4567/api/postScores");
         HttpURLConnection connection = (HttpURLConnection)content.openConnection();
         connection.setReadTimeout(10000);

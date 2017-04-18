@@ -1,6 +1,8 @@
 package com.example.jenny.androidapplication.Model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Author: Linus Lagerhjelm
  * File: Score
@@ -9,10 +11,13 @@ package com.example.jenny.androidapplication.Model;
  */
 public final class Score {
 
+    @SerializedName("value")
     private final int mValue;
 
+    @SerializedName("timestamp")
     private final long mTimestamp;
 
+    @SerializedName("user")
     private final User mUser;
 
 
