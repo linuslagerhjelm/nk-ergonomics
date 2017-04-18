@@ -12,61 +12,36 @@
         body {
             font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
             font-size: 100%;
-            color:#FFFFFF;
-            background-color: #B0C6D5;
-        }
-        .status {
-            /* avoid an excessively wide status text */
-            white-space: pre;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 250px;
-            height: 300px;
+            color: #FFFFFF;
+            background-color: #000;
+            height: 400px;
         }
         h1 {
             text-align: center;
         }
 
-        #submit {
-            background-color: #687699;
-            text-decoration: none;
-            border: none;
-            width: 80%;
-            height: 40px;
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            color: #ffffff;
-            font-size: 100%;
-            margin-left: 10%;
+        form {
+            text-align: center;
         }
 
-        #submit:hover {
-            background-color: #FFFFFF;
-            color: #687699;
-            -webkit-transition: all 0.2s linear;
+        form input {
+            font-size: 100%;
+            margin-bottom: 10px;
         }
 
-        #namn {
-            width: 75%;
-            height: 30px;
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
-            margin-left: 10%;
-            position: absolute;
-            top: 0;
-            margin-top: 50%;
+        button {
+            background-color: black;
+            border: 1px solid white;
+            display: block;
+            margin: 10px auto;
+            color: white;
+            padding: .5em 4em;
         }
-        #efternamn {
-            width: 75%;
-            height: 30px;
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
-            margin-left: 10%;
-            position: absolute;
-            top: 0;
-            margin-top: 70%;
-        }
-        .office {
-            margin-bottom: 70%;
+
+        button:hover{
+            border-color: #b0b0b0;
+            cursor: pointer;
+            animation: all .2s ease-in;
         }
 
         #tempLink{
@@ -90,17 +65,15 @@
 <body>
     <h1>NK Ergonomics</h1>
 
-    <div class="status"></div>
-    <select id="office">
-        <option value="Skelleftea">Skellefteå</option>
-        <option value="Stockholm">Stockholm</option>
-        <option value="Los Angeles">Los Angeles</option>
-    </select>
-   <!-- <button id="submit">Create</button>-->
     <form>
         <input type="text" id="namn" placeholder="First name" required/>
         <input type="text" id="efternamn" placeholder="Last name" required/>
-        <input type="button" value="Create" id="submit"/>
+        <select id="office">
+            <option value="Skelleftea">Skellefteå</option>
+            <option value="Stockholm">Stockholm</option>
+            <option value="Los Angeles">Los Angeles</option>
+        </select>
+        <button type="submit" id="submit">Create</button>
     </form>
 
     <a id="tempLink" href="highscore.html">To highscore page</a>
