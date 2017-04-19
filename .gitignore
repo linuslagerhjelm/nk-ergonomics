@@ -117,5 +117,7 @@ fabric.properties
 # Project specifics
 target/
 nk-ergonomics.iml
-lib/
+server/lib/
 *.db
+*.pem
+*.crx
