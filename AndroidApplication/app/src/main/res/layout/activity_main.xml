@@ -37,10 +37,19 @@
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:text="Ok"
-        android:background="#FFFFFF"
+        android:background="@drawable/button"
         tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="280dp" />
+        tools:layout_editor_absoluteY="290dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        app:srcCompat="@android:drawable/ic_menu_info_details"
+        tools:layout_editor_absoluteX="266dp"
+        tools:layout_editor_absoluteY="239dp" />
 
 </android.support.constraint.ConstraintLayout>
