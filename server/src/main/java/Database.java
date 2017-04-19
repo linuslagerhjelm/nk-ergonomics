@@ -216,7 +216,7 @@ class Database {
         String filterString = filter.getFilterString();
         final String query =    "SELECT * " +
                                 "FROM scores s " +
-                                "INNER JOIN (SELECT * FROM users u WHERE " + filterString + ") u " +
+                                "INNER JOIN (SELECT * FROM users u " + filterString + ") u " +
                                 "ON s.user_id = u.id " +
                                 "WHERE " + filter.getTimeFilter() + " " +
                                 "LIMIT " + filter.getLimit();

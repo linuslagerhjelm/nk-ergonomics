@@ -34,9 +34,9 @@ public final class HighScoreFilter {
 
     String getTimeFilter() {
         if (mEndTime == null) {
-            return String.format("s.timestamp > %s", mStartTime.toString());
+            return String.format("s.timestamp >= %s", mStartTime.toString());
         } else {
-            return String.format("s.timestamp > %s and s.timestamp < %s", mStartTime.toString(), mEndTime.toString());
+            return String.format("s.timestamp >= %s and s.timestamp <= %s", mStartTime.toString(), mEndTime.toString());
         }
     }
 
@@ -47,9 +47,9 @@ public final class HighScoreFilter {
      */
     String getFilterString() {
         if (mNames.size() > 0) {
-            return String.format("first_name in (%s) and last_name in (%s) and office in (%s)", getFirstNames(), getLastNames(), getOffices());
+            return String.format("WHERE first_name in (%s) and last_name in (%s) and office in (%s)", getFirstNames(), getLastNames(), getOffices());
         } else if (mOffice.size() > 0) {
-            return String.format("office in (%s)", getOffices());
+            return String.format("WHERE office in (%s)", getOffices());
         } else {
             return "";
         }
