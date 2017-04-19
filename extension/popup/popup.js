@@ -58,27 +58,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function create(){
-    $("#submit").click(function() {
-
-        var submit = document.getElementById("submit");
-        var firstName = document.getElementById("namn").value;
-        var lastName = document.getElementById("efternamn").value;
-        // namn += " " + document.getElementById("efternamn").value;
-        var office = document.getElementById("office").value.toUpperCase();
-	    var encodedParam = encodeURIComponent(`/api/createUser/*?name=${namn}&&office=${office}*/`);
-
-        data = {
-                   "firstName": firstName,
-                   "lastName": lastName,
-                   "office": office
-               }
-
-       	    $.ajax({
-                   type: "POST",
-                   url: "api/createUser",
-                   data: JSON.stringify(data),
-                   success: function (data) { console.log(data) },
-        });
+function create() {
+    var firstName = capitalizeFirst(document.getElementById("namn").value);
+    var lastName = capitalizeFirst(document.getElementById("efternamn").value);
+    var office = document.getElementById("office").value.toUpperCase();
+    var data = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "office": office
+    };
+    $.ajax({
+        type: "POST",
+        url: "/api/createUser",
+        data: JSON.stringify(data),
+        success: function (data) { console.log(data); },
+        error: function (msg) {console.log(msg); }
     });
-};
+}
+
+function capitalizeFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+

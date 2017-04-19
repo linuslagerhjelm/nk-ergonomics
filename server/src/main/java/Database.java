@@ -137,6 +137,21 @@ class Database {
     }
 
     /**
+     * Gets a single user by its user id
+     * @param id the id of the user to get
+     * @return List containing a single user
+     * @throws NoSuchUserException If no user were found
+     */
+    List<User> getUsersById(Integer id) throws NoSuchUserException {
+        final String sql = "SELECT * FROM users u WHERE u.id = ?";
+        return executeSelectUsers(connection -> {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            return stmt;
+        });
+    }
+
+    /**
      * Updates a user in the database to reflect the changes present in
      * the provided user object. The id field in the object will be used
      * to identify the correct row in db and therefore should the provided
