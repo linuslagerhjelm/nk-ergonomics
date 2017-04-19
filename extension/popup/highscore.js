@@ -6,34 +6,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/*console.log(response);*/
-
 var data = { "startTime": 1490208166633 };
 var userInformation;
-
-/*$("#knapp2").click(function() {*/
 
 function getHighscores(){
 
     $.ajax({
         type: "GET",
-        url: "/api/getHighScores",
+        url: "http://localhost:4567/api/getHighScores",
         data: "startTime=1490208166633",
-        success: function (data) { console.log(data); },
+        success: insertScores,
         error: function (msg) { console.log(msg); }
      });
 
-    /*$.ajax({
-        type:"GET",
-        url: "/api/getHighScores",
-        data: JSON.stringify(data);
-        success: function (userInfo)
-        {
-            userInfomation = userInfo;
-            console.log(userInformation);
-        }
-         error: function (response) {
-
-          }
-});*/
 };
+
+function insertScores(data) {
+        var scores = JSON.parse(data)
+        var list = document.getElementById("high-scores");
+        scores.forEach((score) => {
+            tr = document.createElement("tr");
+
+            td1 = document.createElement("td");
+            td1.innerText = score.value;
+
+            td2 = document.createElement("td");
+            td2.innerText = score.user.firstName;
+            td2.innerHTML += "&nbsp;"
+            td2.innerText += score.user.lastName;
+
+            td3 = document.createElement("td");
+            td3.innerText = score.user.office;
+
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+            list.appendChild(tr);
+
+        });
+
+}
