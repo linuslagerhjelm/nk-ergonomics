@@ -48,7 +48,8 @@ public class ExampleUnitTest {
         Score score= new Score(value, timestamp, user);
         List<Score> highScore = new ArrayList<>();
         highScore.add(score);
-        server.postScores(highScore);
+        int statuscode = server.postScores(highScore);
+        assertEquals(200,statuscode);
     }
 
 }

@@ -32,7 +32,7 @@ public final class Score {
      * Checks if the score is valid
      * @return true/false accordingly
      */
-    boolean valid() {
+    public boolean valid() {
         return mUser != null && mTimestamp != 0;
     }
 

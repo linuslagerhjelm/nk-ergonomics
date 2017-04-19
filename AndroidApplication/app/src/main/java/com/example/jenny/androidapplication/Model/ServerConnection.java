@@ -62,7 +62,7 @@ public class ServerConnection {
         return jArray;
     }
 
-    public void postScores(List<Score> highScore) throws Exception{
+    public int postScores(List<Score> highScore) throws Exception{
 
         String score = new Gson().toJson(highScore);
         //JSONArray score = new JSONArray(highScore);
@@ -79,7 +79,7 @@ public class ServerConnection {
         wr.write( postData);
 
         int statusCode = connection.getResponseCode();
-        System.out.print(statusCode);
+        return statusCode;
 
     }
 }
