@@ -14,7 +14,7 @@ import java.net.URLConnection;
 
 public class ServerConnection {
         public static void main(String[] args) throws Exception {
-            URL content = new URL("localhost:4567");
+            URL content = new URL("http://localhost:4567");
             URLConnection mURLConnection = content.openConnection();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(mURLConnection.getInputStream()));
