@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">AndroidApplication</string>
+    <string name="app_name">NK</string>
+    <string name="home">home</string>
+    <string name="user">user</string>
 </resources>
