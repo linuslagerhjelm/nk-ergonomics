@@ -2,9 +2,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     var elem = document.getElementById("knapp2");
     if (elem) {
-        elem.addEventListener("click", getHighscores());
+        elem.addEventListener("click", getHighscores);
     }
 });
+
+getHighscores();
 
 var data = { "startTime": 1490208166633 };
 var userInformation;
@@ -22,9 +24,14 @@ function getHighscores(){
 };
 
 function insertScores(data) {
-        var scores = JSON.parse(data)
+        var scores = JSON.parse(data);
         var list = document.getElementById("high-scores");
-        scores.forEach((score) => {
+        list.innerHTML = "";
+
+        scores.sort(function (s1, s2) {
+            return s2.value - s1.value;
+        });
+        scores.forEach(function (score) {
             tr = document.createElement("tr");
 
             td1 = document.createElement("td");

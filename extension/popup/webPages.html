@@ -13,13 +13,8 @@
             height: 430px;
             width: 260px;
         }
-        .status {
-            /* avoid an excessively wide status text */
-            white-space: pre;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 250px;
-            height: 300px;
+        .delete {
+            cursor: pointer;
         }
         h1 {
             text-align: center;
@@ -42,12 +37,15 @@
 
     </style>
 </head>
-<body>
-
     <h1>Forbidden web pages </h1>
-    <div class="status"></div>
+    <ul id="forbiddenUrls">
+
+    </ul>
+
+    <input id="inputField" type="url" placeholder="New url">
+    <button id="addUrl">Add</button>
 
     <a id="pagelink" href="highscore.html">To highscore page</a>
-
+    <script src="webPages.js"></script>
 </body>
 </html>
