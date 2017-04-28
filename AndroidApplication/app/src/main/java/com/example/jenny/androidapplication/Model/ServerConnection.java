@@ -27,16 +27,23 @@ public class ServerConnection {
     private String userCode = "";
     private User user;
     private Office office;
+    private boolean doUserExcist;
     public ServerConnection(String code){
         this.userCode=code;
         try{
             JSONArray userData = getUser(this.userCode);
-            JSONObject jObject=userData.getJSONObject(0);
-            int id = jObject.getInt("id");
-            String firstName = jObject.getString("firstName");
-            String lastName = jObject.getString("lastName");
-            this.office = Office.valueOf(jObject.getString("office"));
-            this.user = new User(id,firstName,lastName,office);
+            if(userData.length()==0){
+                doUserExcist=false;
+            }
+            else{
+                JSONObject jObject=userData.getJSONObject(0);
+                int id = jObject.getInt("id");
+                String firstName = jObject.getString("firstName");
+                String lastName = jObject.getString("lastName");
+                this.office = Office.valueOf(jObject.getString("office"));
+                this.user = new User(id,firstName,lastName,office);
+                doUserExcist=true;
+            }
         }
         catch(Exception e){
             e.getMessage();
@@ -45,6 +52,10 @@ public class ServerConnection {
     }
     public ServerConnection(){
         System.out.println("A user can not be found. Please enter code");
+    }
+
+    public boolean controlIfUserExcist(){
+        return doUserExcist;
     }
 
     public JSONArray getUser(String userCode) throws Exception{

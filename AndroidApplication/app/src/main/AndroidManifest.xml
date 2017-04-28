@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Layout.UserActivity"></activity>
+        <activity android:name=".Layout.UserActivity">
+            <category android:name="android.intent.category.LAUNCHER" />
+        </activity>
+        <activity android:name=".Layout.StartActivity"></activity>
     </application>
 
 </manifest>

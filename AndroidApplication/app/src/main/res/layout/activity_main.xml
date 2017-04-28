@@ -14,68 +14,69 @@
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="500px"
-        android:text="Enter code"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.414" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50px"
-        android:layout_marginLeft="40px">
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:textAlignment="center"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:singleLine="true"
-        android:layout_marginRight="10px"
-        android:layout_marginLeft="19px"
-        tools:layout_editor_absoluteY="241dp"
-        tools:layout_editor_absoluteX="128dp">
-
-        <requestFocus />
-
-    </EditText>
-
-        <ImageButton
-            android:id="@+id/imageButton"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#000000"
-            app:srcCompat="@android:drawable/ic_menu_info_details"
-            tools:layout_editor_absoluteX="266dp"
-            tools:layout_editor_absoluteY="239dp" />
+            android:layout_gravity="center"
+            android:layout_marginTop="500px"
+            android:text="Enter code"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50px"
+            android:layout_marginLeft="40px">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="70px"
-        android:layout_marginLeft="7px"
-        android:text="Ok"
-        android:background="@drawable/button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="290dp" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:singleLine="true"
+                android:layout_marginRight="10px"
+                android:layout_marginLeft="19px"
+                tools:layout_editor_absoluteY="241dp"
+                tools:layout_editor_absoluteX="128dp"
+                android:inputType="number">
+
+                <requestFocus />
+
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                app:srcCompat="@android:drawable/ic_menu_info_details"
+                tools:layout_editor_absoluteX="266dp"
+                tools:layout_editor_absoluteY="239dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="70px"
+            android:layout_marginLeft="7px"
+            android:text="Ok"
+            android:background="@drawable/button"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="290dp" />
 
     </LinearLayout>
 
