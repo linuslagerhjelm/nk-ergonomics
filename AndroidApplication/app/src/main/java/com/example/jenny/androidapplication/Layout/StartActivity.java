@@ -34,6 +34,7 @@ public class StartActivity extends AppCompatActivity {
                 return true;
             case R.id.office:
                 // redirect to OfficeActivity
+                helper.changeActivity(this, OfficeActivity.class);
                 return true;
             default:
                 // If we got here, the user's action was not recognized.
