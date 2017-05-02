@@ -23,7 +23,7 @@ public class ExampleUnitTest {
     @Test
     public void TestGetUserByID() throws Exception {
         String id="1";
-        ServerConnection server = new ServerConnection(id);
+        ServerConnection server = new ServerConnection(id, "http://localhost:4567/api/getUsers?id=");
         JSONArray jobject=server.getUser(id);
         assertNotNull(jobject);
     }
@@ -31,7 +31,7 @@ public class ExampleUnitTest {
     public void TestGetUserByID1() throws Exception{
         String id="1";
         int id2=1;
-        ServerConnection server = new ServerConnection(id);
+        ServerConnection server = new ServerConnection(id, "http://localhost:4567/api/getUsers?id=");
         JSONArray jobject=server.getUser(id);
         JSONObject j = jobject.getJSONObject(0);
         int actualID=j.getInt("id");
@@ -41,7 +41,7 @@ public class ExampleUnitTest {
     @Test
     public void TestSendDataToServer()throws Exception{
         String id="1";
-        ServerConnection server = new ServerConnection(id);
+        ServerConnection server = new ServerConnection(id, "http://localhost:4567/api/getUsers?id=");
         User user = new User(1,"Alexander","Lagerhjelm", Office.SKELLEFTEÅ);
         int value = 500;
         long timestamp = System.currentTimeMillis();

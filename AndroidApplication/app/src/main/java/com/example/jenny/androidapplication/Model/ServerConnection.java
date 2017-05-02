@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import com.example.jenny.androidapplication.Interfaces.CallbackObject;
 import com.google.gson.Gson;
 import com.google.gson.annotations.*;
 
@@ -23,35 +24,36 @@ import com.google.gson.annotations.*;
  * Created by Jenny on 2017-04-06.
  */
 
-public class ServerConnection {
+public class ServerConnection{
+    private final String url;
     private String userCode = "";
     private User user;
     private Office office;
     private boolean doUserExcist;
-    public ServerConnection(String code){
-        this.userCode=code;
-        try{
-            JSONArray userData = getUser(this.userCode);
-            if(userData.length()==0){
-                doUserExcist=false;
-            }
-            else{
-                JSONObject jObject=userData.getJSONObject(0);
-                int id = jObject.getInt("id");
-                String firstName = jObject.getString("firstName");
-                String lastName = jObject.getString("lastName");
-                this.office = Office.valueOf(jObject.getString("office"));
-                this.user = new User(id,firstName,lastName,office);
-                doUserExcist=true;
-            }
-        }
-        catch(Exception e){
-            e.getMessage();
-        }
 
-    }
-    public ServerConnection(){
-        System.out.println("A user can not be found. Please enter code");
+    public ServerConnection(String code, String url){
+        this.userCode=code;
+        this.url = url;
+        new Thread(() -> {
+            try{
+                JSONArray userData = getUser(this.userCode);
+                if(userData.length()==0){
+                    doUserExcist=false;
+                }
+                else{
+                    JSONObject jObject = userData.getJSONObject(0);
+                    int id = jObject.getInt("id");
+                    String firstName = jObject.getString("firstName");
+                    String lastName = jObject.getString("lastName");
+                    this.office = Office.valueOf(jObject.getString("office"));
+                    this.user = new User(id,firstName,lastName,office);
+                    doUserExcist = true;
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     public boolean controlIfUserExcist(){
@@ -59,7 +61,8 @@ public class ServerConnection {
     }
 
     public JSONArray getUser(String userCode) throws Exception{
-        URL content = new URL("http://localhost:4567/api/getUsers?id=" + userCode);
+        //URL content = new URL("http://localhost:4567/api/getUsers?id=" + userCode);
+        URL content = new URL(this.url + userCode);
         URLConnection mURLConnection = content.openConnection();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(mURLConnection.getInputStream(), "utf-8"));
