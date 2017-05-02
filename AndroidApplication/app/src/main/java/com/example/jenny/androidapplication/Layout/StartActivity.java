@@ -33,8 +33,7 @@ public class StartActivity extends AppCompatActivity {
                 helper.changeActivity(this,UserActivity.class);
                 return true;
             case R.id.office:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+                // redirect to OfficeActivity
                 return true;
             default:
                 // If we got here, the user's action was not recognized.
