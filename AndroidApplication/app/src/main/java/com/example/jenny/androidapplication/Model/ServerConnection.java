@@ -15,7 +15,7 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import com.example.jenny.androidapplication.Interfaces.CallbackObject;
+/**import com.example.jenny.androidapplication.Interfaces.CallbackObject;*/
 import com.google.gson.Gson;
 import com.google.gson.annotations.*;
 
