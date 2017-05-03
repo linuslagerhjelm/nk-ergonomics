@@ -25,6 +25,7 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
+                helper.changeActivity(this,StartActivity.class);
                 // User chose the "Settings" item, show the app settings UI...
                 return true;
 
@@ -34,6 +35,8 @@ public class UserActivity extends AppCompatActivity {
                 return true;
             case R.id.office:
                 // redirect to OfficeActivity
+                helper.changeActivity(this, OfficeActivity.class);
+
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

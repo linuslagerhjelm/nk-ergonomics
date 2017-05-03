@@ -25,13 +25,16 @@ import com.google.gson.annotations.*;
  */
 
 public class ServerConnection{
+    public interface DownloadCallback {
+        void onSuccess(User user);
+    }
     private final String url;
     private String userCode = "";
     private User user;
     private Office office;
     private boolean doUserExcist;
 
-    public ServerConnection(String code, String url){
+    public ServerConnection(String code, String url, DownloadCallback callback){
         this.userCode=code;
         this.url = url;
         new Thread(() -> {
@@ -48,6 +51,7 @@ public class ServerConnection{
                     this.office = Office.valueOf(jObject.getString("office"));
                     this.user = new User(id,firstName,lastName,office);
                     doUserExcist = true;
+                    callback.onSuccess(this.user);
                 }
             }
             catch(Exception e){

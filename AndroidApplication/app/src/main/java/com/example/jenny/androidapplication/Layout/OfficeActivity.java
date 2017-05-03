@@ -25,7 +25,8 @@ public class OfficeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                // User chose the "Settings" item, show the app settings UI...
+                // Redirect to startActivity
+                helper.changeActivity(this,StartActivity.class);
                 return true;
 
             case R.id.user:
