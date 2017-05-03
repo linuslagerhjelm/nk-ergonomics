@@ -6,4 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.jenny.androidapplication.Layout.OfficeActivity">
 
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="-60dp"
+        tools:layout_editor_absoluteY="4dp"
+        android:background="#000000">
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="350px"
+            android:background="@drawable/logo"
+            tools:layout_editor_absoluteX="266dp"
+            tools:layout_editor_absoluteY="239dp" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

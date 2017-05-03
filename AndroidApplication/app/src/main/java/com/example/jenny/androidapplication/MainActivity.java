@@ -1,9 +1,7 @@
 package com.example.jenny.androidapplication;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,26 +26,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         infoButton = (ImageButton) findViewById(R.id.infoButton);
-        infoButton.setOnClickListener(v -> {
-            InformationBox(message);
-        });
+        if(infoButton!=null){
+            infoButton.setOnClickListener(v -> InformationBox(message));
+        }
         // Controls if the user presses the okbutton and enters the code
         button3 = (Button)findViewById(R.id.button3);
-        button3.setOnClickListener(v -> {
-            EditText editText = (EditText) findViewById(R.id.editText);
-            String value = editText.getText().toString();
-            ServerConnection server = new ServerConnection(value, "http://10.0.2.2:4567/api/getUsers?id=", user -> {
-
-            //boolean doesUserExcist=server.controlIfUserExcist();
-            helper.changeActivity(MainActivity.this,StartActivity.class);
-            //if(doesUserExcist){
-                //helper.changeActivity(MainActivity.this,StartActivity.class);
-            //}
-            //else{
-                //InformationBox(message);
-            //}
+        if(button3!=null){
+            button3.setOnClickListener(v -> {
+                EditText editText = (EditText) findViewById(R.id.editText);
+                if(editText!=null){
+                    String value = editText.getText().toString();
+                    ServerConnection server = new ServerConnection(value, "http://10.0.2.2:4567/api/getUsers?id=", user -> {
+                        helper.changeActivity(MainActivity.this,StartActivity.class);
+                    });
+                }
             });
-        });
+        }
+
 
     }
 
