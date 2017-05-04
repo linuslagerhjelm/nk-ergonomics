@@ -24,7 +24,7 @@
             android:layout_marginTop="470px" />
 
         <ImageView
-            android:id="@+id/imageButton2"
+            android:id="@+id/imageButton"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/logo"
