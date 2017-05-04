@@ -35,20 +35,19 @@ public class MainActivity extends AppCompatActivity {
         button3 = (Button)findViewById(R.id.button3);
         button3.setOnClickListener(v -> {
             EditText editText = (EditText) findViewById(R.id.editText);
-            String value = editText.getText().toString();
-            ServerConnection server = new ServerConnection(value, "http://10.0.2.2:4567/api/getUsers?id=", user -> {
+            //String value = editText.getText().toString();
+            //ServerConnection server = new ServerConnection(value, "http://10.0.2.2:4567/api/getUsers?id=", user -> {
 
             //boolean doesUserExcist=server.controlIfUserExcist();
             helper.changeActivity(MainActivity.this,StartActivity.class);
-            //if(doesUserExcist){
-                //helper.changeActivity(MainActivity.this,StartActivity.class);
-            //}
-            //else{
-                //InformationBox(message);
-            //}
-            });
+            /**if(doesUserExcist){
+                helper.changeActivity(MainActivity.this,StartActivity.class);
+            }
+            else{
+                InformationBox(message);
+            }
+            });**/
         });
-
     }
 
     public void InformationBox(String message){
