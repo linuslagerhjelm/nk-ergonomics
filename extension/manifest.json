@@ -11,11 +11,12 @@
   },
   "background": {
     "scripts": ["background/background.js", "resources/js/jquery.js"],
-    "persistent": false
+    "persistent": true
   },
   "permissions": [
-    "activeTab",
+    "tabs",
     "storage",
+    "notifications",
     "http://localhost/",
     "http://*/*"
   ]

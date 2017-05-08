@@ -15,6 +15,14 @@ chrome.storage.sync.get("urls", function (items) {
     listenOnAdd();
 });
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.msg === "TAB_CHANGE") {
+            console.log(request.msg)
+        }
+    }
+);
+
 function listenOnAdd() {
     document.getElementById("addUrl").addEventListener("click", function (e) {
         var input = document.getElementById("inputField");
@@ -25,7 +33,6 @@ function listenOnAdd() {
         chrome.storage.sync.set({"urls": urls}, function() {
             addListItem(urlList, input.value);
         });
-
     });
 }
 
