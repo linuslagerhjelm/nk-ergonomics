@@ -13,6 +13,7 @@ chrome.storage.sync.get("urls", function (items) {
     });
 
     listenOnAdd();
+    listenOnClick();
 });
 
 chrome.runtime.onMessage.addListener(
@@ -36,9 +37,19 @@ function listenOnAdd() {
     });
 }
 
+function listenOnClick() {
+    document.getElementById("deleteButton").addEventListener("click", function (e) {
+        var listItems = document.getElementsByTagName("li");
+        for (var i = 0; i < listItems.length; i++) {
+        listItems[i].onclick = function(){this.parentNode.removeChild(this)}
+        }
+    });
+}
+
 function addListItem(parent, text) {
     var li = document.createElement("li");
     var span = document.createElement("span");
+    span.id ="deleteButton";
     span.innerText = "x";
 
     li.addEventListener("click", removeUrl);

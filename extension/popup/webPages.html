@@ -10,11 +10,14 @@
             font-size: 100%;
             color: #FFFFFF;
             background-color: #000;
+            background-image: url("../resources/img/NKBackground.png");
+            background-size: cover;
             height: 430px;
             width: 260px;
         }
         .delete {
             cursor: pointer;
+            color: #DC3132;
         }
         h1 {
             text-align: center;
@@ -34,17 +37,63 @@
             left: 28%;
         }
 
+        input#inputField {
+            font-size: 100%;
+            width: 80%;
+            height: 35px;
+            display: block;
+            margin: auto;
+
+        }
+        button#addUrl {
+        width: 60%;
+        height: 35px;
+        background-color: white;
+        border: 1px solid white;
+        font-size: inherit;
+        display: block;
+        color: black;
+        padding: .5em 4em;
+        margin: auto;
+        margin-top: 10px;
+        }
+
+        button#addUrl:hover{
+        background-color: black;
+        border-color: #FFFFFF;
+        cursor: pointer;
+        color: white;
+        transition: all .2s ease-in;
+        }
+        ul#forbiddenUrls {
+            width: 90%;
+            height: 140px;
+            overflow: auto;
+            list-style-type: none;
+            text-align: left;
+        }
+        div#alert {
+            height: 40px;
+            width: 80%;
+            text-align: center;
+            display: none;
+            margin: auto;
+            background-color: #3CBE45;
+        }
+
+
 
     </style>
 </head>
 <body>
     <h1>Forbidden web pages </h1>
-    <ul id="forbiddenUrls">
 
-    </ul>
-
-    <input id="inputField" type="url" placeholder="New url">
+    <input id="inputField" type="url" placeholder="Add URL">
     <button id="addUrl">Add</button>
+    <div id="alert">Website added.</div>
+
+    <ul id="forbiddenUrls">
+    </ul>
 
     <a id="pagelink" href="highscore.html">To highscore page</a>
     <script src="webPages.js"></script>
