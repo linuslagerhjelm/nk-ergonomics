@@ -16,14 +16,6 @@ chrome.storage.sync.get("urls", function (items) {
     listenOnClick();
 });
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        if (request.msg === "TAB_CHANGE") {
-            console.log(request.msg)
-        }
-    }
-);
-
 function listenOnAdd() {
     document.getElementById("addUrl").addEventListener("click", function (e) {
         var input = document.getElementById("inputField");
@@ -41,7 +33,15 @@ function listenOnClick() {
     document.getElementById("deleteButton").addEventListener("click", function (e) {
         var listItems = document.getElementsByTagName("li");
         for (var i = 0; i < listItems.length; i++) {
-        listItems[i].onclick = function(){this.parentNode.removeChild(this)}
+            listItems[i].onclick = function(e){
+                this.parentNode.removeChild(this);
+                chrome.storage.sync.get("urls", function (items) {
+                    urls = items.urls || [];
+                    var index = urls.indexOf(this.innerText.split(" ").slice(1).join(" "));
+                    urls.splice(index, 1);
+                    chrome.storage.sync.set({"urls": urls}, function() { });
+                }.bind(this));
+            }
         }
     });
 }
