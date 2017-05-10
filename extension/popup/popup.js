@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function create() {
+function create(e) {
+    e.preventDefault();
     var firstName = capitalizeFirst(document.getElementById("namn").value);
     var lastName = capitalizeFirst(document.getElementById("efternamn").value);
     var office = document.getElementById("office").value.toUpperCase();
@@ -31,10 +32,14 @@ function create() {
     };
     $.ajax({
         type: "POST",
-        url: "/api/createUser",
+        url: "http://localhost:4567/api/createUser",
         data: JSON.stringify(data),
-        success: function (data) { console.log(data); },
-        error: function (msg) {console.log(msg); }
+    }).done( function(data) {
+        chrome.storage.sync.set({"user": data}, function() {
+            window.location.href = "code.html";
+        });
+    }).fail( function(data, status) {
+        console.log(JSON.stringify(data), status)
     });
 }
 

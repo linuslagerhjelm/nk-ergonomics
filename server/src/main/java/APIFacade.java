@@ -66,6 +66,7 @@ public class APIFacade {
         User user;
         try {
             user = mParser.fromJson(request.body(), User.class);
+            System.out.println("Created user: " + user.toString());
 
         } catch (JsonSyntaxException e) {
             response.status(400);
@@ -75,6 +76,7 @@ public class APIFacade {
         if (user.valid()) {
             User returnUser = new User(mDb.getNextUserId(), user.getFirstName(), user.getLastName(), user.getOffice());
             mDb.insertUser(user);
+            response.header("Content-Type", "application/json");
             response.status(200);
             return mParser.toJson(returnUser);
         }
