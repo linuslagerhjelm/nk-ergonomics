@@ -15,7 +15,7 @@ function showNotif(changeInfo, tab) {
                 console.log(tab.url);
                 chrome.notifications.create('', {
                     type: 'basic',
-                    iconUrl: '../resources/img/NKlogoNoText.png',
+                    iconUrl: '../resources/img/NK-Logo.png',
                     title: 'Time to work out',
                     message: 'Game is now available'
                 }, function(notificationId) {});
