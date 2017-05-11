@@ -13,6 +13,7 @@ chrome.storage.sync.get("urls", function (items) {
     });
 
     listenOnAdd();
+    listenOnClick();
 });
 
 function listenOnAdd() {
@@ -25,13 +26,30 @@ function listenOnAdd() {
         chrome.storage.sync.set({"urls": urls}, function() {
             addListItem(urlList, input.value);
         });
+    });
+}
 
+function listenOnClick() {
+    document.getElementById("deleteButton").addEventListener("click", function (e) {
+        var listItems = document.getElementsByTagName("li");
+        for (var i = 0; i < listItems.length; i++) {
+            listItems[i].onclick = function(e){
+                this.parentNode.removeChild(this);
+                chrome.storage.sync.get("urls", function (items) {
+                    urls = items.urls || [];
+                    var index = urls.indexOf(this.innerText.split(" ").slice(1).join(" "));
+                    urls.splice(index, 1);
+                    chrome.storage.sync.set({"urls": urls}, function() { });
+                }.bind(this));
+            }
+        }
     });
 }
 
 function addListItem(parent, text) {
     var li = document.createElement("li");
     var span = document.createElement("span");
+    span.id ="deleteButton";
     span.innerText = "x";
 
     li.addEventListener("click", removeUrl);

@@ -31,16 +31,29 @@ function insertScores(data) {
         scores.sort(function (s1, s2) {
             return s2.value - s1.value;
         });
+
         scores.forEach(function (score) {
+
             tr = document.createElement("tr");
 
             td1 = document.createElement("td");
             td1.innerText = score.value;
+            td1.innerHTML += "&nbsp;"
+            td1.innerHTML += "&nbsp;"
+            td1.innerHTML += "&nbsp;"
+
 
             td2 = document.createElement("td");
-            td2.innerText = score.user.firstName;
+            td2.innerHTML = "&nbsp;"
+            td2.innerHTML += "&nbsp;"
+            td2.innerHTML += "&nbsp;"
+            td2.innerHTML += "&nbsp;"
+            td2.innerHTML += "&nbsp;"
+            td2.innerText += score.user.firstName;
             td2.innerHTML += "&nbsp;"
             td2.innerText += score.user.lastName;
+            td2.innerHTML += "&nbsp;"
+            td2.innerHTML += "&nbsp;"
 
             td3 = document.createElement("td");
             td3.innerText = score.user.office;

@@ -6,16 +6,17 @@
   "version": "1.1",
 
   "browser_action": {
-    "default_icon": "resources/img/NKlogoNoText.png",
+    "default_icon": "resources/img/NK-Logo.png",
     "default_popup": "popup/popup.html"
   },
   "background": {
     "scripts": ["background/background.js", "resources/js/jquery.js"],
-    "persistent": false
+    "persistent": true
   },
   "permissions": [
-    "activeTab",
+    "tabs",
     "storage",
+    "notifications",
     "http://localhost/",
     "http://*/*"
   ]

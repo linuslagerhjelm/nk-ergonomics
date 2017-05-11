@@ -9,6 +9,8 @@
             font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
             font-size: 100%;
             color: #FFFFFF;
+            background-image: url("../resources/img/NKBackground.png");
+            background-size: cover;
             background-color: #000;
             height: 430px;
             width: 260px;
@@ -16,70 +18,87 @@
         h1 {
             text-align: center;
         }
+        td{
+            font-size: 12px;
+        }
+
+        th{
+
+        }
 
         button {
+            background-color: white;
+            border: 1px solid white;
+            width: 30%;
+            display: block;
+            margin: 10px auto;
+            margin-top: 15px;
+            color: black;
+
+        }
+
+        button:hover {
             background-color: black;
+            color: white;
+        }
+
+
+        #pageLink {
+            width: 50%;
+            height: 35px;
+            background-color: white;
             border: 1px solid white;
             display: block;
             margin: 10px auto;
+            text-decoration: none;
+            left: 23%;
+            font-size: inherit;
+            text-align: center;
+            color: black;
+            margin-top: 140px;
+
+        }
+        #pageLink:hover {
+            background-color: black;
+            border-color: #FFFFFF;
+            cursor: pointer;
             color: white;
-            padding: .5em 4em;
+            transition: all .2s ease-in;
         }
 
-        td {
+        #rubriker{
             font-size: 14px;
         }
-
-        #pageLink {
-            color: black;
-            background-color: white;
-            border: 1px solid black;
-            padding: 5px;
-            font-size: 11px;
-            text-decoration: none;
-            box-shadow: 0px 5px 5px 0px ;
-            margin-bottom: 20px;
-            position: absolute;
-            top: 90%;
-            left: 23%;
-        }
-        #knapp2{
-
-            margin:auto;
-        }
-
-        /*body {
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
-            color:#FFFFFF;
-            background-color: #B0C6D5;
-        }
-        .status {
-            white-space: pre;
-            text-overflow: ellipsis;
+        /* Add a black background color to the top navigation */
+        .topnav {
             overflow: hidden;
-            max-width: 250px;
-            height: 300px;
+            list-style-type: none;
         }
-        h1 {
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
             text-align: center;
-        }
-
-        #pageLink {
-            color: black;
-            background-color: white;
-            border: 1px solid black;
-            padding: 5px;
-            font-size: 11px;
+            padding: 14px 16px;
             text-decoration: none;
-            box-shadow: 0px 5px 5px 0px ;
-            margin-bottom: 2px;
-            position: absolute;
-            top: 90%;
-            left: 12%;
+            list-style-type: none;
+            font-size: 17px;
         }
 
-        */
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+            background-color: white;
+            color: black;
+        }
+
 
     </style>
 
@@ -102,15 +121,22 @@
  -->
 
 <body>
+
+    <div class="topnav" id="myTopnav">
+        <li><a href="highscore.html" class="active">Highscores</a></li>
+        <li><a href="webPages.html">Web Pages</a></li>
+    </div>
+
     <h1 id=rubrik">Highscore</h1>
     <div class="status"></div>
+    <p id="rubriker"> Score   &nbsp;&nbsp;Name   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Office </p>
     <table id="high-scores">
 
     </table>
     <button id="knapp2" type="button">Refresh</button>
 
 
-    <a id="pageLink" href="webPages.html">To forbidden web pages</a>
+    <!--<a id="pageLink" href="webPages.html">To web pages</a>-->
 
 </body>
 </html>
