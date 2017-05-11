@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
  * Description: Holds user information. This class produces immutable objects
  */
 public final class User {
-
     public enum Office {
         SKELLEFTEÅ, STOCKHOLM, LA
     }
@@ -88,5 +87,15 @@ public final class User {
         result = 31 * result + mLastName.hashCode();
         result = 31 * result + mOffice.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "mId=" + mId +
+                ", mFirstName='" + mFirstName + '\'' +
+                ", mLastName='" + mLastName + '\'' +
+                ", mOffice=" + mOffice +
+                '}';
     }
 }

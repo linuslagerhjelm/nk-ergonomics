@@ -14,6 +14,8 @@
             font-size: 100%;
             color: #FFFFFF;
             background-color: #000;
+            background-image: url("../resources/img/NKBackground.png");
+            background-size: cover;
             height: 430px;
             width: 260px;
         }
@@ -21,34 +23,47 @@
             text-align: center;
         }
 
-        form {
-            text-align: center;
-        }
 
         form input {
             font-size: 100%;
             margin-bottom: 10px;
+            width: 80%;
+            height: 35px;
         }
 
         button {
-            background-color: black;
+            width: 50%;
+            height: 35px;
+            background-color: white;
             border: 1px solid white;
             display: block;
             margin: 10px auto;
-            color: white;
-            padding: .5em 4em;
+            font-size: inherit;
+            text-align: center;
+            color: black;
+            margin-top: 140px;
         }
 
         button:hover{
-            border-color: #b0b0b0;
+            background-color: black;
+            border-color: #FFFFFF;
             cursor: pointer;
-            animation: all .2s ease-in;
+            color: white;
+            transition: all .2s ease-in;
         }
 
         #tempLink{
             margin: 20px;
-
         }
+
+        form select {
+            width: 80%;
+            height: 30px;
+            -webkit-user-select: none;
+            font-size: inherit;
+            margin-top: 20px;
+        }
+
 
     </style>
 
@@ -60,7 +75,7 @@
      -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="/resources/js/jquery.js"></script>
-    <script src="/popup/popup.js"></script>
+    <script src="popup.js"></script>
 
 </head>
 <body>
@@ -70,13 +85,15 @@
         <input type="text" id="namn" placeholder="First name" required/>
         <input type="text" id="efternamn" placeholder="Last name" required/>
         <select id="office">
-            <option value="Skelleftea">Skellefteå</option>
+            <option selected disabled>Select office</option>
+            <option value="Skellefteå">Skellefteå</option>
             <option value="Stockholm">Stockholm</option>
             <option value="Los Angeles">Los Angeles</option>
         </select>
         <button type="submit" id="submit">Create</button>
     </form>
 
-    <a id="tempLink" href="highscore.html">To highscore page</a>
+    <a id="tempLink" href="highscore.html">To CIAS page</a>
+    <a id="tempLink2" href="code.html">To code page</a>
 </body>
 </html>

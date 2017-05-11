@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code</title>
+    <style>
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+            color: #FFFFFF;
+            background-color: #000;
+            background-image: url("../resources/img/NKBackground.png");
+            background-size: cover;
+            height: 430px;
+            width: 260px;
+            display: inline-flex;
+        }
+        p {
+            text-align: center;
+        }
+        #container {
+            margin: auto;
+        }
+        #code {
+            text-align: center;
+            font-size: 36pt;
+        }
+
+        #button {
+            width: 150px;
+            background-color: white;
+            border: 1px solid white;
+            display: block;
+            margin: 10px auto;
+            font-size: inherit;
+            text-align: center;
+            color: black;
+            padding: 8px 0;
+            text-decoration: none;
+        }
+
+        #button:hover{
+            background-color: black;
+            border-color: #FFFFFF;
+            cursor: pointer;
+            color: white;
+            transition: all .2s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <p>Enter the below code into your android device:</p>
+        <div id="code"></div>
+        <a href="highscore.html" id="button">Done!</a>
+    </div>
+    <script src="code.js"></script>
+</body>
+</html>

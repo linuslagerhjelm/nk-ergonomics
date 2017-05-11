@@ -10,11 +10,14 @@
             font-size: 100%;
             color: #FFFFFF;
             background-color: #000;
+            background-image: url("../resources/img/NKBackground.png");
+            background-size: cover;
             height: 430px;
             width: 260px;
         }
         .delete {
             cursor: pointer;
+            color: #DC3132;
         }
         h1 {
             text-align: center;
@@ -28,24 +31,102 @@
             text-decoration: none;
             box-shadow: 0px 5px 5px 0px ;
             margin-bottom: 20px;
-            display:center;
             position: absolute;
             top: 90%;
             left: 28%;
         }
 
+        input#inputField {
+            font-size: 100%;
+            width: 80%;
+            height: 35px;
+            display: block;
+            margin: auto;
+
+        }
+        button#addUrl {
+        width: 60%;
+        height: 35px;
+        background-color: white;
+        border: 1px solid white;
+        font-size: inherit;
+        display: block;
+        color: black;
+        padding: .5em 4em;
+        margin: auto;
+        margin-top: 10px;
+        }
+
+        button#addUrl:hover{
+        background-color: black;
+        border-color: #FFFFFF;
+        cursor: pointer;
+        color: white;
+        transition: all .2s ease-in;
+        }
+        ul#forbiddenUrls {
+            width: 90%;
+            height: 140px;
+            overflow: auto;
+            list-style-type: none;
+            text-align: left;
+        }
+        div#alert {
+            height: 40px;
+            width: 80%;
+            text-align: center;
+            display: none;
+            margin: auto;
+            background-color: #3CBE45;
+        }
+
+        /* Add a black background color to the top navigation */
+        .topnav {
+            overflow: hidden;
+            list-style-type: none;
+        }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            list-style-type: none;
+            font-size: 17px;
+        }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+            background-color: white;
+            color: black;
+        }
 
     </style>
 </head>
+<body>
+    <div class="topnav" id="myTopnav">
+        <li><a href="highscore.html">Highscores</a></li>
+        <li><a href="webPages.html" class="active">Web Pages</a></li>
+    </div>
     <h1>Forbidden web pages </h1>
-    <ul id="forbiddenUrls">
 
+    <input id="inputField" type="url" placeholder="Add URL">
+    <button id="addUrl">Add</button>
+    <div id="alert">Website added.</div>
+
+    <ul id="forbiddenUrls">
     </ul>
 
-    <input id="inputField" type="url" placeholder="New url">
-    <button id="addUrl">Add</button>
-
-    <a id="pagelink" href="highscore.html">To highscore page</a>
+    <!--<a id="pagelink" href="highscore.html">To highscore page</a>-->
     <script src="webPages.js"></script>
 </body>
 </html>
