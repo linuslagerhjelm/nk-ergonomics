@@ -16,12 +16,54 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100px"
+            android:text="Game of the week"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Garage Ninja"
+                android:textColor="#FFFFFF"
+                android:textSize="23sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.414" />
+
+            <ImageButton
+                android:id="@+id/infoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                app:srcCompat="@android:drawable/ic_menu_info_details"
+                tools:layout_editor_absoluteX="266dp"
+                tools:layout_editor_absoluteY="239dp" />
+
+        </LinearLayout>
+
         <ImageButton
             android:id="@+id/btnPlay"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/play"
-            android:layout_marginTop="470px" />
+            android:layout_marginTop="180px" />
 
         <ImageView
             android:id="@+id/imageButton"

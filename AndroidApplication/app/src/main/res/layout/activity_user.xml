@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="20px"
             android:text="Your all time top placements"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
@@ -31,46 +31,183 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50px"
-            android:layout_marginLeft="40px">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageButton"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:background="@drawable/goldstar"
-                android:layout_marginTop="350px"
                 tools:layout_editor_absoluteX="266dp"
                 tools:layout_editor_absoluteY="239dp" />
 
             <ImageView
                 android:id="@+id/imageButton2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/logo"
-                android:layout_marginTop="350px"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:background="@drawable/silverstar"
                 tools:layout_editor_absoluteX="266dp"
                 tools:layout_editor_absoluteY="239dp" />
 
             <ImageView
                 android:id="@+id/imageButton3"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/logo"
-                android:layout_marginTop="350px"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:background="@drawable/bronzestar"
                 tools:layout_editor_absoluteX="266dp"
                 tools:layout_editor_absoluteY="239dp" />
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2               4               8"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Weekly highscore"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="You                                   1876p"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="7"
+            android:layout_marginTop="5dp"
+            android:text="1. Per Morberg                              2080p\n2. Leif Mannerström                    2009p\n3. Titti Qvarnström                       1876p\n4. Olle Kvarnström                       1853p\n5. Kalle Gunnarsson                    1429p\n6. Mats Silfverberg                      1400p\n7. Lotta Pettersson                      1387p\n"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp">
+
         <ImageView
             android:id="@+id/imageButton4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radiobuttoncheck"
+            tools:layout_editor_absoluteX="266dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skellefteå"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left">
+
+        <ImageView
+            android:id="@+id/imageButton5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radiobutton"
+            tools:layout_editor_absoluteX="266dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stockholm"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left">
+
+        <ImageView
+            android:id="@+id/imageButton6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radiobutton"
+            tools:layout_editor_absoluteX="266dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Los Angeles"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageButton7"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/logo"
-            android:layout_marginTop="350px"
             tools:layout_editor_absoluteX="266dp"
             tools:layout_editor_absoluteY="239dp" />
 
