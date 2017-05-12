@@ -24,7 +24,7 @@ public final class User {
         this.mOffice = office;
     }
 
-    int getId() {
+    public int getId() {
         return mId;
     }
 
@@ -38,11 +38,11 @@ public final class User {
         return mFirstName != null && mLastName != null && mOffice != null;
     }
 
-    String getFirstName() {
+    public String getFirstName() {
         return mFirstName;
     }
 
-    String getLastName() {
+    public String getLastName() {
         return mLastName;
     }
 

@@ -16,6 +16,7 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 /**import com.example.jenny.androidapplication.Interfaces.CallbackObject;*/
+import com.example.jenny.androidapplication.Layout.Helpers;
 import com.google.gson.Gson;
 import com.google.gson.annotations.*;
 
@@ -24,47 +25,50 @@ import com.google.gson.annotations.*;
  * Created by Jenny on 2017-04-06.
  */
 
-public class ServerConnection{
+public class ServerConnection {
     public interface DownloadCallback {
         void onSuccess(User user);
     }
+    public interface getHighscoreCallback {
+
+        void returnHighscores(JSONArray array);
+    }
+
     private final String url;
     private String userCode = "";
     private User user;
     private Office office;
     private boolean doUserExcist;
+    private Helpers helper;
 
-    public ServerConnection(String code, String url, DownloadCallback callback){
-        this.userCode=code;
+    public ServerConnection(String code, String url, DownloadCallback callback) {
+        this.userCode = code;
         this.url = url;
         new Thread(() -> {
-            try{
+            try {
                 JSONArray userData = getUser(this.userCode);
-                if(userData.length()==0){
-                    doUserExcist=false;
-                }
-                else{
+                /**if (userData.length() == 0) {
+                    doUserExcist = false;
+                } else {**/
                     JSONObject jObject = userData.getJSONObject(0);
                     int id = jObject.getInt("id");
                     String firstName = jObject.getString("firstName");
                     String lastName = jObject.getString("lastName");
                     this.office = Office.valueOf(jObject.getString("office"));
-                    this.user = new User(id,firstName,lastName,office);
-                    doUserExcist = true;
+                    this.user = new User(id, firstName, lastName, office);
+                    //helper.getUser(this.user);
+                    //doUserExcist = true;
+                    GlobalStore gs = GlobalStore.getInstance();
+                    gs.setUser(user);
                     callback.onSuccess(this.user);
-                }
-            }
-            catch(Exception e){
+                /**}**/
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
     }
 
-    public boolean controlIfUserExcist(){
-        return doUserExcist;
-    }
-
-    public JSONArray getUser(String userCode) throws Exception{
+    public JSONArray getUser(String userCode) throws Exception {
         //URL content = new URL("http://localhost:4567/api/getUsers?id=" + userCode);
         URL content = new URL(this.url + userCode);
         URLConnection mURLConnection = content.openConnection();
@@ -80,21 +84,21 @@ public class ServerConnection{
         return jArray;
     }
 
-    public int postScores(List<Score> highScore) throws Exception{
+    public int postScores(List<Score> highScore) throws Exception {
 
         String score = new Gson().toJson(highScore);
         //JSONArray score = new JSONArray(highScore);
         //System.out.println(score.toString());
-        byte[] postData       = score.getBytes();
+        byte[] postData = score.getBytes();
         URL content = new URL("http://localhost:4567/api/postScores");
-        HttpURLConnection connection = (HttpURLConnection)content.openConnection();
+        HttpURLConnection connection = (HttpURLConnection) content.openConnection();
         connection.setReadTimeout(10000);
         connection.setConnectTimeout(15000);
         connection.setRequestMethod("POST");
         connection.setDoInput(true);
         connection.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream( connection.getOutputStream());
-        wr.write( postData);
+        DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+        wr.write(postData);
 
         int statusCode = connection.getResponseCode();
         return statusCode;
