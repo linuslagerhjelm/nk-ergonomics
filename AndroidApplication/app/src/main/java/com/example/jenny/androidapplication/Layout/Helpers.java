@@ -11,6 +11,7 @@ import com.example.jenny.androidapplication.Model.User;
 import com.example.jenny.androidapplication.R;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -36,7 +37,29 @@ public class Helpers {
         fromActivity.startActivity(intent);
     }
 
-    public void getHighscores(String url, ServerConnection.getHighscoreCallback callback) {
+    public JSONObject getHighscores(String url) {
+        try {
+            URL newContent = new URL(url);
+            URLConnection mURLConnection = newContent.openConnection();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(mURLConnection.getInputStream(), "utf-8"));
+            StringBuilder out = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+            JSONArray jArray = new JSONArray(out.toString());
+            JSONObject jObject = jArray.getJSONObject(0);
+            reader.close();
+            return jObject;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**public void getHighscores(String url, ServerConnection.getHighscoreCallback callback) {
         new Thread(() -> {
             try {
                 URL newContent = new URL(url);
@@ -56,5 +79,5 @@ public class Helpers {
                 e.printStackTrace();
             }
         }).start();
-    }
+    }**/
 }
